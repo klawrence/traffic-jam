@@ -1,7 +1,10 @@
 class Grid
   SIZE = 6
 
+  attr_accessor :rows
+
   def initialize
-    @grid = Array.new(SIZE) { Array.new(SIZE) }
+    @rows = Array.new(SIZE) { Array.new(SIZE) }
   end
+
 end
