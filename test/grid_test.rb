@@ -27,13 +27,29 @@ END
   end
 
   def test_print_a_grid_with_a_car
-    @cars << Game.default_red_car
+    @cars << Game::RED_CAR
     @grid.update
 
     expected = <<END
  . . . . . .
  . . . . . .
- . R R . . . EXIT
+ . . R R . . EXIT
+ . . . . . .
+ . . . . . .
+ . . . . . .
+END
+
+    assert_equal expected, @grid.to_s
+  end
+
+  def test_print_a_grid_with_a_horizontal_lorry
+    @cars << Game::YELLOW_LORRY
+    @grid.update
+
+    expected = <<END
+ . . . . . Y
+ . . . . . Y
+ . . . . . Y EXIT
  . . . . . .
  . . . . . .
  . . . . . .

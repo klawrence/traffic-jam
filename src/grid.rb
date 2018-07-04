@@ -16,10 +16,15 @@ class Grid
   def update
     reset
     @cars.each do |car|
-      position = car.position.dup
-      car.size.times { |n|
-        @rows[position[0]][position[1] + n] = car.colour[0].upcase
-      }
+      position = car.position
+      car.size.times do |n|
+        row = position[0]
+        col = position[1]
+        row += n if car.orientation == 'UD'
+        col += n if car.orientation == 'RL'
+
+        @rows[row][col] = car.colour[0].upcase
+      end
     end
   end
 
