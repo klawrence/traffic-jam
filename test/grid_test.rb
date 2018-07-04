@@ -3,17 +3,8 @@ require_relative '../src/grid.rb'
 
 class GridTest < Test::Unit::TestCase
 
-  # Called before every test method runs. Can be used
-  # to set up fixture information.
   def setup
     @grid = Grid.new
-  end
-
-  # Called after every test method runs. Can be used to tear
-  # down fixture information.
-
-  def teardown
-    # Do nothing
   end
 
   def test_grid_has_6_rows_and_6_columns

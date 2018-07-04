@@ -1,8 +1,8 @@
-require_relative 'grid.rb'
+require_relative 'game.rb'
 
 class CommandLine
   def initialize
-    @grid = Grid.new
+    @game = Game.new
   end
 
   def run
@@ -12,7 +12,7 @@ class CommandLine
     puts
 
     loop do
-      puts @grid
+      puts @game.grid
       puts
       puts 'enter a car colour or type quit'
       print '> '
