@@ -13,7 +13,18 @@ class Car
   end
 
   def move direction
-    position[1] -= 1
+    case direction[0].upcase
+      when 'L'
+        position[1] -= 1
+      when 'R'
+        position[1] += 1
+      when 'U'
+        position[0] -= 1
+      when 'D'
+        position[0] += 1
+      else
+        false
+    end
   end
 
   def to_s

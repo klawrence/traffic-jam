@@ -33,4 +33,12 @@ class GameTest < Test::Unit::TestCase
     @game.move_car car, 'L'
     assert_equal [1, 1], car.position
   end
+
+  def test_can_move_a_car_down
+    car = @game.car('Y')
+    assert_equal [0, 5], car.position
+
+    @game.move_car car, 'D'
+    assert_equal [1, 5], car.position
+  end
 end
