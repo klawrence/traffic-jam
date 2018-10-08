@@ -24,6 +24,8 @@ class Game
     new_cars.each do |car|
       @cars[car.initial_letter] = car
     end
+
+    @grid = Grid.new cars
   end
 
   def cars

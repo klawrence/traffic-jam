@@ -27,22 +27,19 @@ class CommandLine
   end
 
   def move(car)
-    loop do
+    puts
+    puts "moving the #{car}"
+    puts 'enter a direction L,R,U,D or leave blank to choose a different car'
+    print '> '
+
+    input = gets.chomp.strip
+    return if input.empty?
+
+    if @game.move_ok? car, input
+      @game.move_car car, input
+    else
+      puts 'invalid move'
       puts
-      puts "moving the #{car}"
-      puts 'enter a direction L,R,U,D or leave blank to choose a different car'
-      print '> '
-
-      input = gets.chomp.strip
-      break if input.empty?
-
-      if @game.move_ok? car, input
-        @game.move_car car, input
-        puts @game.grid
-      else
-        puts 'invalid move'
-        puts
-      end
     end
   end
 end

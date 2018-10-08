@@ -13,6 +13,8 @@ class Car
   end
 
   def move direction
+    @position = @position.dup
+
     case direction[0].upcase
       when 'L'
         position[1] -= 1
