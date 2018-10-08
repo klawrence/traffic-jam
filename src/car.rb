@@ -8,7 +8,15 @@ class Car
     @orientation = orientation
   end
 
+  def initial_letter
+    colour[0].upcase
+  end
+
+  def move direction
+    position[1] -= 1
+  end
+
   def to_s
-    '#{color} car'
+    "#{colour} car"
   end
 end

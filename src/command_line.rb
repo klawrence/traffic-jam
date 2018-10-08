@@ -18,9 +18,29 @@ class CommandLine
       print '> '
 
       input = gets.chomp.strip
-      return if input.nil? || input.empty? || input == 'quit'
+      break if input == 'quit'
 
-      puts "Move #{input} car"
+      car = @game.car input unless input.empty?
+      move(car) if car
+    end
+  end
+
+  def move(car)
+    loop do
+      puts
+      puts "moving the #{car}"
+      puts 'enter a direction L,R,U,D or leave blank to choose a different car'
+      print '> '
+
+      input = gets.chomp.strip
+      break if input.empty?
+
+      if @game.move_car car, input
+        puts @game.grid
+      else
+        puts 'invalid move'
+        puts
+      end
     end
   end
 end

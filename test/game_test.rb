@@ -20,4 +20,17 @@ class GameTest < Test::Unit::TestCase
     assert_equal '[2, 2]', car.position.to_s
     assert_equal 'RL', car.orientation
   end
+
+  def test_get_car_by_its_colour
+    car = @game.car('O')
+    assert_equal 'orange', car.colour
+  end
+
+  def test_can_move_a_car_left
+    car = @game.car('O')
+    assert_equal [1, 2], car.position
+
+    @game.move_car car, 'L'
+    assert_equal [1, 1], car.position
+  end
 end

@@ -23,7 +23,7 @@ class Grid
         row += n if car.orientation == 'UD'
         col += n if car.orientation == 'RL'
 
-        @rows[row][col] = car.colour[0].upcase
+        @rows[row][col] = car.initial_letter
       end
     end
   end
