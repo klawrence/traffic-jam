@@ -28,6 +28,13 @@ class Grid
     end
   end
 
+  def destination_ok? destination
+    return false if destination[0] < 0 || destination[1] < 0
+    return false if destination[0] >= SIZE || destination[1] >= SIZE
+
+    rows[destination[0]][destination[1]] == '.'
+  end
+
   def to_s
     output = ''
 

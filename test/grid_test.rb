@@ -1,5 +1,6 @@
 require 'test/unit'
 require_relative '../src/grid.rb'
+require_relative '../src/car.rb'
 
 class GridTest < Test::Unit::TestCase
 
@@ -26,14 +27,14 @@ END
     assert_equal expected, @grid.to_s
   end
 
-  def test_print_a_grid_with_a_car
-    @cars << Game::RED_CAR
+  def test_print_a_grid_with_a_red_car
+    @cars << Car.new('red', 2, [2,1], 'RL')
     @grid.update
 
     expected = <<END
  . . . . . .
  . . . . . .
- . . R R . . EXIT
+ . R R . . . EXIT
  . . . . . .
  . . . . . .
  . . . . . .
@@ -42,8 +43,8 @@ END
     assert_equal expected, @grid.to_s
   end
 
-  def test_print_a_grid_with_a_horizontal_lorry
-    @cars << Game::YELLOW_LORRY
+  def test_print_a_grid_with_a_lorry
+    @cars << Car.new('yellow', 3, [0,5], 'UD')
     @grid.update
 
     expected = <<END

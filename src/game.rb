@@ -4,35 +4,26 @@ require_relative 'car.rb'
 class Game
   attr_reader :grid
 
-  RED_CAR = Car.new('red', 2, [2, 2], 'RL')
-  GREEN_CAR = Car.new('green', 2, [0, 4], 'UD')
-  ORANGE_CAR = Car.new('orange', 2, [1, 2], 'RL')
-  BLUE_CAR = Car.new('blue', 2, [2,4], 'UD')
-  SALMON_CAR = Car.new('salmon', 2, [4,3], 'UD')
-  PURPLE_CAR = Car.new('purple', 2, [4,4], 'LR')
-  YELLOW_LORRY = Car.new('yellow', 3, [0, 5], 'UD')
-  MAGENTA_LORRY = Car.new('magenta', 3, [3,2], 'UD')
-
-  DEFAULT_GAME = [
-      RED_CAR,
-      GREEN_CAR,
-      ORANGE_CAR,
-      BLUE_CAR,
-      SALMON_CAR,
-      PURPLE_CAR,
-      YELLOW_LORRY,
-      MAGENTA_LORRY,
-  ]
-
   def initialize
     @cars = {}
-
-    DEFAULT_GAME.each do |car|
-      @cars[car.initial_letter] = car.dup
-    end
-
     @grid = Grid.new cars
-    @grid.update
+  end
+
+  def load_game _id
+    new_cars = [
+        Car.new('red', 2, [2, 2], 'RL'),
+        Car.new('green', 2, [0, 4], 'UD'),
+        Car.new('orange', 2, [1, 2], 'RL'),
+        Car.new('blue', 2, [2, 4], 'UD'),
+        Car.new('salmon', 2, [4, 3], 'UD'),
+        Car.new('purple', 2, [4, 4], 'LR'),
+        Car.new('yellow', 3, [0, 5], 'UD'),
+        Car.new('magenta', 3, [3, 2], 'UD'),
+    ]
+
+    new_cars.each do |car|
+      @cars[car.initial_letter] = car
+    end
   end
 
   def cars
@@ -46,6 +37,12 @@ class Game
   def move_car car, direction
     car.move direction
     @grid.update
+  end
+
+  def move_ok? car, direction
+    dup = car.dup
+    destination = dup.move direction
+    @grid.destination_ok? destination
   end
 
 end

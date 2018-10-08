@@ -16,15 +16,21 @@ class Car
     case direction[0].upcase
       when 'L'
         position[1] -= 1
+        destination = position
       when 'R'
         position[1] += 1
+        destination = [position[0], position[1]+size]
       when 'U'
         position[0] -= 1
+        destination = position
       when 'D'
         position[0] += 1
+        destination = [position[0]+size, position[1]]
       else
-        false
+        destination = nil
     end
+
+    destination
   end
 
   def to_s

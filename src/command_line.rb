@@ -3,6 +3,7 @@ require_relative 'game.rb'
 class CommandLine
   def initialize
     @game = Game.new
+    @game.load_game 'game-1'
   end
 
   def run
@@ -35,7 +36,8 @@ class CommandLine
       input = gets.chomp.strip
       break if input.empty?
 
-      if @game.move_car car, input
+      if @game.move_ok? car, input
+        @game.move_car car, input
         puts @game.grid
       else
         puts 'invalid move'

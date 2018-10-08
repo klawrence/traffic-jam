@@ -5,6 +5,7 @@ class GameTest < Test::Unit::TestCase
 
   def setup
     @game = Game.new
+    @game.load_game 'game-1'
   end
 
   def test_game_has_a_grid
@@ -40,5 +41,19 @@ class GameTest < Test::Unit::TestCase
 
     @game.move_car car, 'D'
     assert_equal [1, 5], car.position
+  end
+
+  def test_move_is_valid_if_the_destination_is_empty
+    car = @game.car('O')
+    assert_equal [1, 2], car.position
+
+    assert @game.move_ok? car, 'L'
+  end
+
+  def test_move_is_valid_if_the_destination_is_out_of_bounds
+    car = @game.car('G')
+    assert_equal [0, 4], car.position
+
+    refute @game.move_ok? car, 'U'
   end
 end
